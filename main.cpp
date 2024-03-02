@@ -1,13 +1,12 @@
 #include <iostream>
 #include <getopt.h>
+#include <unistd.h>
+#include <cstring> // für strlen
 //including of the help file that will be displayed
 #include "header/helptext.h"
 
 //function to put the help text in the console
-void help() {
-    puts(HELPTEXT);
-    exit(0);
-}
+
 
 //longopts structure which is used to use long operators as commands
 struct option longopts[] = {
@@ -24,15 +23,24 @@ int main(int argc, char *argv[])
     }
     else {
         //Set variables for the option char and index
+        Help command;
         int option;
-        int index;
+        int i = 1;
+        int size = 0;
         //Loop for checking each command that is given by the user
-        while ((option = getopt_long(argc, argv, "h", longopts, &index)) != -1) {
-            std::cout << option << "\n";
+        while ((option = getopt_long(argc, argv, "h", longopts, NULL)) != -1) {
             switch (option)
             {
             case 'h':
-                help();
+                bool validInput;
+                validInput = command.checkInput(std::string(argv[i]), option, "--help");
+                if(validInput) {
+                command.help();
+                }
+                else {
+                    std::cerr << "err\n";
+                    return 1;
+                }
                 break;
             
             default:
