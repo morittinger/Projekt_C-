@@ -1,9 +1,7 @@
 #include <iostream>
 #include <getopt.h>
-#include <unistd.h>
-#include <cstring> // für strlen
 //including of the help file that will be displayed
-#include "header/helptext.h"
+#include "header/command.h"
 
 //function to put the help text in the console
 

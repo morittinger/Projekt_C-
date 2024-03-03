@@ -2,7 +2,7 @@
 class Command {
     public:
     
-    //Function to check if the input from the user is correct
+    //Function to check if the input from the user is correct: For one short and one long valid options
     //parameters needed: Input from the user, option variable from getopts, acceptet longopts command  
     bool checkInput(std::string opt, char shortopt, std::string longopt) {
         //bool variable to give outout: true or false
@@ -17,6 +17,16 @@ class Command {
             return validInput;
         }
         //If false return the flase boolean
+        else return validInput;
+    }
+
+    //Function to check if the input from the user is correct: For only longopts
+    bool checkInput(std::string opt, std::string longopt) {
+        bool validInput = false;
+        if(opt == longopt) {
+            validInput = true;
+            return validInput;
+        }
         else return validInput;
     }
 
