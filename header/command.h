@@ -1,7 +1,8 @@
 //class elements for all commands
 class Command {
     public:
-    
+        int option;
+        int i = 1;
     //Function to check if the input from the user is correct: For one short and one long valid options
     //parameters needed: Input from the user, option variable from getopts, acceptet longopts command  
     bool checkInput(std::string opt, char shortopt, std::string longopt) {
@@ -42,7 +43,7 @@ class Help : public Command {
             "..."
             };
     //Function to display the text
-    void help() {
+    void showHelpText() {
         puts(HELPTEXT);
         exit(0);
     }

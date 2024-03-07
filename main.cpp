@@ -22,18 +22,13 @@ int main(int argc, char *argv[])
     else {
         //Set variables for the option char and index
         Help command;
-        int option;
-        int i = 1;
-        int size = 0;
         //Loop for checking each command that is given by the user
-        while ((option = getopt_long(argc, argv, "h", longopts, NULL)) != -1) {
-            switch (option)
+        while ((command.option = getopt_long(argc, argv, "h", longopts, NULL)) != -1) {
+            switch (command.option)
             {
             case 'h':
-                bool validInput;
-                validInput = command.checkInput(std::string(argv[i]), option, "--help");
-                if(validInput) {
-                command.help();
+                if(command.checkInput(std::string(argv[command.i]), command.option, "--help")) {
+                command.showHelpText();
                 }
                 else {
                     std::cerr << "err\n";
